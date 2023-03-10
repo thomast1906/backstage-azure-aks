@@ -56,14 +56,16 @@ jobs:
           login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-      - run: |
-          docker image build . -f packages/backend/Dockerfile -t backstage:${{ steps.prep.outputs.BUILD_ID }}
-          # docker tag backstage:latest ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ steps.prep.outputs.BUILD_ID }}
-          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ steps.prep.outputs.BUILD_ID }}
+      # - run: |
+      #     docker image build . -f packages/backend/Dockerfile -t backstage:${{ steps.prep.outputs.BUILD_ID }}
+      #     # docker tag backstage:latest ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ steps.prep.outputs.BUILD_ID }}
+      #     docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ steps.prep.outputs.BUILD_ID }}
 
-      # - name: Build the image and push it to ACR
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     push: true
-      #     tags: tamopsacr.azurecr.io/backstage:${{ github.sha }}
-      #     file: packages/backend/Dockerfile
+      - name: Build the image and push it to ACR
+        uses: docker/build-push-action@v2
+        env:
+          DOCKER_BUILDKIT: 1
+        with:
+          push: true
+          tags: tamopsacr.azurecr.io/backstage:${{ github.sha }}
+          file: packages/backend/Dockerfile

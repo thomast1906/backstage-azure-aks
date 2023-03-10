@@ -48,7 +48,7 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
-          docker image build . -f packages/backend/Dockerfile -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ steps.prep.outputs.BUILD_ID }}
+          DOCKER_BUILDKIT=1 docker image build . -f packages/backend/Dockerfile -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ steps.prep.outputs.BUILD_ID }}
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ steps.prep.outputs.BUILD_ID }}
 
 #       - name: Build the image and push it to ACR

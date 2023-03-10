@@ -62,5 +62,5 @@ jobs:
           yarn workspace backend build-image
           docker tag backstage:latest ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage/backend:prod-${{ steps.prep.outputs.BUILD_ID }}
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage/backend:prod-${{ steps.prep.outputs.BUILD_ID }}
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
 

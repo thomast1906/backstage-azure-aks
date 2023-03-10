@@ -44,8 +44,6 @@ jobs:
           sha=${GITHUB_SHA::8}
           ts=$(date +%s)
           echo "::set-output name=BUILD_ID::${sha}-${ts}"
-      - name: remove dummy credentials file
-        run: rm -f github-app-backstage-hmcts-credentials.yaml
 
       - name: 'Build and push image'
         uses: azure/docker-login@v1
@@ -53,6 +51,8 @@ jobs:
           login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: |
+          yarn workspace backend build-image
 
       - name: Build the image and push it to ACR
         uses: docker/build-push-action@v2

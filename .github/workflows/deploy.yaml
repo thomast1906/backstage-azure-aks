@@ -30,7 +30,7 @@ jobs:
         run: |
             yarn install --frozen-lockfile
             yarn tsc
-            yarn build
+            yarn build:backend
 
       - name: Generate build ID
         id: prep

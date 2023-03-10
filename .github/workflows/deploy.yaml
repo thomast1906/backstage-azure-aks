@@ -14,10 +14,14 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [16.x]
 
     steps:
       - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
 
       - name: Install yarn
         run: yarn install -g 
@@ -37,8 +41,8 @@ jobs:
 
       - name: 'Build and push image'
         uses: azure/docker-login@v1
-        env:
-          DOCKER_BUILDKIT: 1
+#         env:
+#           DOCKER_BUILDKIT: 1
         with:
           login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           username: ${{ secrets.REGISTRY_USERNAME }}

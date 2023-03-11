@@ -1,9 +1,10 @@
 app:
-  title: Scaffolded Backstage App
-  baseUrl: http://localhost:3000
+  # Should be the same as backend.baseUrl when using the `app-backend` plugin.
+  title: TamOps backStage
+  baseUrl: http://localhost:7007
 
 organization:
-  name: My Company
+  name: TamOps
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins

@@ -1,5 +1,6 @@
 app:
   # Should be the same as backend.baseUrl when using the `app-backend` plugin.
+  title: TamOps backStage
   baseUrl: http://localhost:7007
 
 organization:
@@ -13,7 +14,8 @@ backend:
   #   keys:
   #     - secret: ${BACKEND_SECRET}
   baseUrl: http://localhost:7007
-  listen: ':7007'
+  listen:
+    port: 7007
     # Uncomment the following host directive to bind to specific interfaces
     # host: 127.0.0.1
   csp:

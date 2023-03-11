@@ -1,9 +1,9 @@
 app:
-  title: Scaffolded Backstage App
-  baseUrl: http://localhost:3000
+  # Should be the same as backend.baseUrl when using the `app-backend` plugin.
+  baseUrl: http://localhost:7007
 
 organization:
-  name: My Company
+  name: TamOps
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
@@ -13,8 +13,7 @@ backend:
   #   keys:
   #     - secret: ${BACKEND_SECRET}
   baseUrl: http://localhost:7007
-  listen:
-    port: 7007
+  listen: ':7007'
     # Uncomment the following host directive to bind to specific interfaces
     # host: 127.0.0.1
   csp:
